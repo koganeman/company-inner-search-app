@@ -29,6 +29,9 @@ import constants as ct
 # 「.env」ファイルで定義した環境変数の読み込み
 load_dotenv()
 
+# WebBaseLoaderが使用するUSER_AGENTの設定（SCC環境では未設定のためエラーになる）
+os.environ.setdefault("USER_AGENT", "company-inner-search-app")
+
 
 ############################################################
 # 関数定義
