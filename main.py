@@ -1,6 +1,9 @@
 """
 このファイルは、Webアプリのメイン処理が記述されたファイルです。
 """
+import os
+# USER_AGENTをインポート前に設定（SCC環境でWebBaseLoaderが使用）
+os.environ.setdefault("USER_AGENT", "company-inner-search-app")
 
 ############################################################
 # 1. ライブラリの読み込み
@@ -42,6 +45,9 @@ try:
 except Exception as e:
     # エラーログの出力
     logger.error(f"{ct.INITIALIZE_ERROR_MESSAGE}\n{e}")
+    # SCC環境でのデバッグ用にコンソールにもエラーを出力
+    import traceback
+    traceback.print_exc()
     # エラーメッセージの画面表示
     st.error(utils.build_error_message(ct.INITIALIZE_ERROR_MESSAGE), icon=ct.ERROR_ICON)
     # 後続の処理を中断
